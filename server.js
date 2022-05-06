@@ -24,21 +24,21 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/timestamp/", (req, res)=>{
+app.get("/api/", (req, res)=>{
   const date = new Date();
   res.json({
     "unix": date.valueOf(), 
     "utc" : date.toUTCString()
   });
 });
-app.get("/api/timestamp/:timestamp", (req, res)=>{
+app.get("/api/:timestamp", (req, res)=>{
   const date = req.params.timestamp;
   console.log("Date:" + date);
  
   if(/\d{5,}/.test(date)){
     console.log("is date unix?: Yes");
     res.json({
-        "unix": (date), 
+        "unix": parseInt(date), 
         "utc" : new Date(parseInt(date)).toUTCString()
       });
   }else{
